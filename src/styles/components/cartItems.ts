@@ -15,6 +15,7 @@ export const CartItemsContainer = styled('div', {
   zIndex: 10,
   overflow: 'hidden',
   transform: 'translateX(100%)',
+  transition: 'all 0.35s ease-in-out',
 
   variants: {
     isCartOpen: {
