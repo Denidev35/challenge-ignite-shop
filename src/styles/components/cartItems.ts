@@ -12,7 +12,7 @@ export const CartItemsContainer = styled('div', {
   position: 'fixed',
   right: 0,
   top: 0,
-  zIndex: 5,
+  zIndex: 10,
   overflow: 'hidden',
   transform: 'translateX(100%)',
 
@@ -99,5 +99,24 @@ export const FinalizeBuy = styled('button', {
 
   '&:not(:disabled):hover': {
     background: '$green300',
+  },
+})
+
+export const Overlay = styled('div', {
+  position: 'fixed',
+  background: 'rgba(0, 0, 0, 0.5)',
+  top: 0,
+  bottom: 0,
+  right: 0,
+  left: 0,
+  zIndex: 5,
+  transform: 'translateX(100%)',
+
+  variants: {
+    isCartOpen: {
+      true: {
+        transform: 'translateX(0)',
+      },
+    },
   },
 })

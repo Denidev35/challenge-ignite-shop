@@ -4,6 +4,7 @@ import {
   CloseButton,
   FinalizeBuy,
   InfoQuanityPrice,
+  Overlay,
   Quantity,
   TotalPrice,
 } from '../styles/components/cartItems'
@@ -51,36 +52,42 @@ export function CartItems() {
   }
 
   return (
-    <CartItemsContainer isCartOpen={shouldDisplayCart}>
-      <CloseButton onClick={handleCloseCart}>
-        <X size={24} />
-      </CloseButton>
-      <h1>Sacola de compras</h1>
-      {cartCount === 0 ? (
-        <h1 style={{ textAlign: 'center' }}>
-          Sua sacola de compras está vazia, preencha-a e volte para realizar sua
-          compra
-        </h1>
-      ) : (
-        ''
-      )}
-      {items.map((item) => {
-        return <Item key={item.id} item={item} removeItem={removeItem} />
-      })}
-      <InfoQuanityPrice>
-        <Quantity>
-          <span>Quantidade</span>
-          <p>{cartCount} items</p>
-        </Quantity>
-        <TotalPrice>
-          <p>Valor total</p>
-          <strong>{formattedTotalPrice}</strong>
-        </TotalPrice>
+    <>
+      <CartItemsContainer isCartOpen={shouldDisplayCart}>
+        <CloseButton onClick={handleCloseCart}>
+          <X size={24} />
+        </CloseButton>
+        <h1>Sacola de compras</h1>
+        {cartCount === 0 ? (
+          <h1 style={{ textAlign: 'center' }}>
+            Sua sacola de compras está vazia, preencha-a e volte para realizar
+            sua compra
+          </h1>
+        ) : (
+          ''
+        )}
+        {items.map((item) => {
+          return <Item key={item.id} item={item} removeItem={removeItem} />
+        })}
+        <InfoQuanityPrice>
+          <Quantity>
+            <span>Quantidade</span>
+            <p>{cartCount} items</p>
+          </Quantity>
+          <TotalPrice>
+            <p>Valor total</p>
+            <strong>{formattedTotalPrice}</strong>
+          </TotalPrice>
 
-        <FinalizeBuy disabled={isCreateCheckoutSession} onClick={handleByCart}>
-          Finalizar compra
-        </FinalizeBuy>
-      </InfoQuanityPrice>
-    </CartItemsContainer>
+          <FinalizeBuy
+            disabled={isCreateCheckoutSession}
+            onClick={handleByCart}
+          >
+            Finalizar compra
+          </FinalizeBuy>
+        </InfoQuanityPrice>
+      </CartItemsContainer>
+      <Overlay isCartOpen={shouldDisplayCart} onClick={handleCloseCart} />
+    </>
   )
 }
